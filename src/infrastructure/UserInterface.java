@@ -14,14 +14,14 @@ public class UserInterface {
 
         RoboController controller=new RoboController();
         while (true) {
-            String inputString = console.readLine(": ");
-            switch (inputString) {
+            String input = console.readLine(": ");
+            switch (input) {
                 case "FINISH":
                     System.out.println("Thank you for using toy robot system");
                     return;
                 default:
                     try {
-                        String outputVal = controller.performOperation(inputString);
+                        String outputVal = controller.performOperation(input);
                         System.out.println(outputVal);
                     } catch (Exception e) {
                         // TODO: 11/02/2020 added generalized exception...modify
