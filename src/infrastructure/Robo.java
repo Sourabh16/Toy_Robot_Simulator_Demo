@@ -1,5 +1,6 @@
 package infrastructure;
 
+import domain.exception.robotException;
 import domain.model.RoboPosition;
 
 public class Robo {
@@ -11,4 +12,17 @@ public class Robo {
     public void setPosition(RoboPosition position) {
         this.position = position;
     }
+
+    public boolean moveToNewPosition(RoboPosition newPosition) throws robotException {
+        if (newPosition != null) {
+            // change position
+            this.position = newPosition;
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+
 }

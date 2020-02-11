@@ -20,7 +20,7 @@ public class RoboController {
 
     public String performOperation(String inputString) throws robotException {
         String[] inputArray = inputString.split(" "); //split total string into chunks by " "
-        String outputString = "";
+        String response = "";
         boolean commandsValidity = false;
         //check split inputArray is valid commands
         for (String inputCommand : inputArray) {
@@ -42,11 +42,20 @@ public class RoboController {
             }
             if (command == commonObjects.MoveCommand.PLACE) {
                 RoboPosition position = new RoboPosition(xVal, yVal, moveDirection);
-                outputString = placeRobot(position);
+                response = placeRobot(position);
+            } else if (command == commonObjects.MoveCommand.MOVE) {
+                RoboPosition newPosition = robo.getPosition().getNewPosition();
+                //checking if position given is correct
+                if (!board.isPositionCorrect(newPosition))
+                    response = String.valueOf(false);
+                else
+                    response = String.valueOf(robo.moveToNewPosition(newPosition));
+            }  else {
+                throw new robotException(INVALID_COMMAND_ENTERED);
             }
         } else
             return INVALID_COMMAND_ENTERED;
-        return outputString;
+        return response;
     }
 
 
