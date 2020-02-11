@@ -9,6 +9,7 @@ public class Robo {
     public RoboPosition getPosition() {
         return position;
     }
+
     public void setPosition(RoboPosition position) {
         this.position = position;
     }
@@ -18,37 +19,36 @@ public class Robo {
      */
 
     public boolean moveToNewPosition(RoboPosition newPosition) throws robotException {
+        boolean response = false;
         if (newPosition != null) {
             // change position
-            this.position = newPosition;
-            return true;
-        } else {
-            return false;
+            setPosition(newPosition);
+            response = true;
         }
-
+        return response;
     }
 
     /**
      * turns robo to left
      */
     public boolean turnLeft() {
+        boolean response = false;
         if (this.position.getDirection() != null) {
             this.position.direction = this.position.getDirection().turnToLeft();
-            return true;
-        } else {
-            return false;
+            response = true;
         }
+        return response;
     }
 
     /**
      * turns robo to left
      */
     public boolean turnRight() {
+        boolean response = false;
         if (this.position.getDirection() != null) {
             this.position.direction = this.position.getDirection().turnToRight();
-            return true;
-        } else {
-            return false;
+            response = true;
         }
+        return response;
     }
 }

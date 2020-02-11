@@ -5,8 +5,8 @@ import domain.exception.robotException;
 import java.util.Objects;
 
 public class RoboPosition {
-    int x, y;
     public MoveDirection direction;
+    int x, y;
 
     public RoboPosition(int x, int y, MoveDirection direction) {
         this.x = x;
@@ -17,6 +17,7 @@ public class RoboPosition {
     public RoboPosition(RoboPosition roboPosition) {
         this.x = roboPosition.getX();
         this.y = roboPosition.getY();
+        this.direction = roboPosition.getDirection();
     }
 
     //function to calculate chanege in position with new xy values
