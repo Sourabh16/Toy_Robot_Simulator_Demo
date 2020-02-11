@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class RoboPosition {
     int x, y;
-    MoveDirection direction;
+    public MoveDirection direction;
 
     public RoboPosition(int x, int y, MoveDirection direction) {
         this.x = x;

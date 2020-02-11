@@ -50,6 +50,10 @@ public class RoboController {
                     response = String.valueOf(false);
                 else
                     response = String.valueOf(robo.moveToNewPosition(newPosition));
+            } else if (command == commonObjects.MoveCommand.LEFT) {
+                response = String.valueOf(robo.turnLeft());
+            } else if (command == commonObjects.MoveCommand.RIGHT) {
+                response = String.valueOf(robo.turnRight());
             }  else {
                 throw new robotException(INVALID_COMMAND_ENTERED);
             }
