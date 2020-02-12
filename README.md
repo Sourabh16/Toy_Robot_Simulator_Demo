@@ -1,6 +1,4 @@
 # Toy_Robot_Simulator_Demo
-
-Toy Robot Simulator
 ===================
 
 Description
