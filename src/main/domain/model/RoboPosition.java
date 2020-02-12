@@ -1,6 +1,6 @@
-package domain.model;
+package main.domain.model;
 
-import domain.exception.robotException;
+import main.domain.exception.robotException;
 
 import java.util.Objects;
 
@@ -20,10 +20,16 @@ public class RoboPosition {
         this.direction = roboPosition.getDirection();
     }
 
+    public RoboPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     //function to calculate chanege in position with new xy values
-    public void positionChange(int posX, int posY) {
+    public RoboPosition positionChange(int posX, int posY) {
         this.x += posX;
         this.y += posY;
+        return new RoboPosition(this.x,this.y);
     }
 
     public RoboPosition getNewPosition() throws robotException {

@@ -1,4 +1,4 @@
-package domain.exception;
+package main.domain.exception;
 
 //custom exception class for toy robot simulator demo
 public class robotException extends Exception {

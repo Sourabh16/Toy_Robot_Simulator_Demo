@@ -1,8 +1,7 @@
-import infrastructure.UserInterface;
+package main;
 
+import main.infrastructure.UserInterface;
 import java.io.Console;
-
-import static domain.common.commonObjects.CONSOLE_NOT_AVAILABLE_FOR_THE_EXECUTION;
 
 public class Main {
 
@@ -17,8 +16,8 @@ public class Main {
 //        }
 //        else
 //        {
-            UserInterface userInterface=new UserInterface();
-            userInterface.start(console);
+        UserInterface userInterface = new UserInterface();
+        userInterface.start(console);
 //        }
     }
 }

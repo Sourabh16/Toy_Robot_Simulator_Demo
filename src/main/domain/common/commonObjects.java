@@ -1,4 +1,4 @@
-package domain.common;
+package main.domain.common;
 
 /*
 Class for storing common variables or common functions that can be reused over the application

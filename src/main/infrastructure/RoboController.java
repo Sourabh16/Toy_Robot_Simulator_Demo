@@ -1,19 +1,20 @@
-package infrastructure;
+package main.infrastructure;
 
-import domain.common.commonObjects;
-import domain.exception.robotException;
-import domain.model.MoveDirection;
-import domain.model.RoboPosition;
-import domain.model.RobotBoard;
+import main.domain.exception.robotException;
+import main.domain.model.MoveDirection;
+import main.domain.model.Robo;
+import main.domain.model.RoboPosition;
+import main.domain.model.RobotBoard;
 
-import static domain.common.commonObjects.*;
+import static main.domain.common.commonObjects.*;
 
 /*
 the controller class for the application
  */
 public class RoboController {
 
-    RobotBoard board = new RobotBoard(commonObjects.BOARD_ROW_COUNT, commonObjects.BOARD_COLUMN_COUNT);
+    //    RobotBoard board = new RobotBoard(commonObjects.BOARD_ROW_COUNT, commonObjects.BOARD_COLUMN_COUNT);
+    RobotBoard board = new RobotBoard();
     Robo robo = new Robo();
 
     public String performOperation(String inputString) throws robotException {
@@ -47,21 +48,21 @@ public class RoboController {
                 if (command == MoveCommand.MOVE) {
                     RoboPosition newPosition = position.getNewPosition();
                     //checking if position given is correct
-                    if (!board.isPositionCorrect(newPosition))
+                    if (!isPositionCorrect(newPosition, board))
                         response = INCORRECT_OR_OUT_OF_BOUNDS_PROMPT;
                     else {
-                        boolean resultNewMove = robo.moveToNewPosition(newPosition);
+                        boolean resultNewMove = moveToNewPosition(newPosition, robo);
                         if (!resultNewMove)
                             response = String.valueOf(resultNewMove);
                     }
 
                 } else if (command == MoveCommand.LEFT) {
-                    boolean turnResponse = robo.turnLeft();
+                    boolean turnResponse = turnLeft(robo);
                     if (!turnResponse) {
                         response = INCORRECT_OR_OUT_OF_BOUNDS_PROMPT;
                     }
                 } else if (command == MoveCommand.RIGHT) {
-                    boolean turnResponse = robo.turnRight();
+                    boolean turnResponse = turnRight(robo);
                     if (!turnResponse) {
                         response = INCORRECT_OR_OUT_OF_BOUNDS_PROMPT;
                     }
@@ -79,9 +80,9 @@ public class RoboController {
                 }
             }
         } catch (IllegalArgumentException e) {
-            response = ILLEGAL_ARGUMENTS_EXCEPTION +": "+e.getMessage();
+            response = ILLEGAL_ARGUMENTS_EXCEPTION + ": " + e.getMessage();
         } catch (robotException e) {
-            response = INVALID_COMMAND_ENTERED+": "+e.getMessage();
+            response = INVALID_COMMAND_ENTERED + ": " + e.getMessage();
         }
 //        }
 //        else
@@ -96,7 +97,7 @@ public class RoboController {
         try {
             if (board != null) {
                 if (position != null) {
-                    if (board.isPositionCorrect(position)) {
+                    if (isPositionCorrect(position, board)) {
                         robo.setPosition(position);
                         status = "Robo placed at " + position.getX() + "," + position.getY();
                     } else {
@@ -111,8 +112,62 @@ public class RoboController {
                 throw new robotException(status);
             }
         } catch (robotException e) {
-            throw new robotException(e.getMessage() +": "+ INVALID_COMMAND_ENTERED);
+            throw new robotException(e.getMessage() + ": " + INVALID_COMMAND_ENTERED);
         }
         return status;
     }
+
+    /*
+    check if provided position is greater than the row count and column count and less than 0 (which is invalid)
+    */
+    public boolean isPositionCorrect(RoboPosition roboPosition, RobotBoard board) {
+        int x = roboPosition.getX();
+        int y = roboPosition.getY();
+//        return x <= this.rowCount && y <= this.columnCount && x >= 0 && y >= 0;
+        return x <= board.getRowCount() && y <= board.getColumnCount() && x >= 0 && y >= 0;
+    }
+
+
+    /**
+     * move robo to new position
+     */
+    public boolean moveToNewPosition(RoboPosition newPosition, Robo robo) {
+        boolean response = false;
+        if (newPosition != null) {
+            // change position
+            robo.setPosition(newPosition);
+            response = true;
+        }
+        return response;
+    }
+
+
+    /**
+     * turns robo to left
+     *
+     * @param robo our robo on board
+     */
+    public boolean turnLeft(Robo robo) {
+        boolean response = false;
+        if (robo.getPosition().getDirection() != null) {
+            robo.getPosition().direction = robo.getPosition().getDirection().turnToLeft();
+            response = true;
+        }
+        return response;
+    }
+
+    /**
+     * turns robo to left
+     * @param robo our robo on board
+     */
+    public boolean turnRight(Robo robo) {
+        boolean response = false;
+        if (robo.getPosition().getDirection() != null) {
+            robo.getPosition().direction = robo.getPosition().getDirection().turnToRight();
+            response = true;
+        }
+        return response;
+    }
+
 }
+

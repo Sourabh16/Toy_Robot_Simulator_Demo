@@ -1,4 +1,4 @@
-package domain.model;
+package main.domain.model;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,6 +28,10 @@ public enum MoveDirection {
 
     public static MoveDirection getValue(int directionNum) {
         return directionMap.get(directionNum);
+    }
+
+    public MoveDirection getValue(MoveDirection moveDirection) {
+        return directionMap.get(moveDirection.directionStepIndex);
     }
 
     /**

@@ -1,7 +1,7 @@
-package infrastructure;
+package main.infrastructure;
 
-import domain.common.IOUtility;
-import domain.exception.robotException;
+import main.domain.common.IOUtility;
+import main.domain.exception.robotException;
 
 import java.io.Console;
 
@@ -11,7 +11,7 @@ public class UserInterface {
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("Robo Demo");
         System.out.println("Enter a command, Valid commands are:");
-        System.out.println("\'PLACE X,Y,NORTH|SOUTH|EAST|WEST\', MOVE, LEFT, RIGHT, REPORT or FINISH");
+        System.out.println("\'PLACE X,Y,NORTH|SOUTH|EAST|WEST\', MOVE, LEFT, RIGHT, REPORT or FINISH/EXIT/END");
 
         RoboController controller = new RoboController();
         while (true) {
@@ -20,6 +20,8 @@ public class UserInterface {
             String input = IOUtility.getString("-> ").toUpperCase();
             switch (input) {
                 case "FINISH":
+                case "EXIT":
+                case "END":
                     System.out.println("Thank you for using toy robot system");
                     return;
                 default:

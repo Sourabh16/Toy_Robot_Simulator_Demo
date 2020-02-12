@@ -1,4 +1,4 @@
-package domain.common;
+package main.domain.common;
 /*
  * This class is a utility class which defines methods to read different forms of user input.
  *
