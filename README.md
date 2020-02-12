@@ -92,5 +92,11 @@ To execute use command:
 
 Java -jar ToyRobot.jar
 
+-------------------------------------------------------
+Development IDE: Intellij Idea
+
+JDK version: JDK1.8.0_241
+
+JUnit version used : JUnit4
 
 
