@@ -7,6 +7,7 @@ public class commonObjects {
     public static final String CONSOLE_NOT_AVAILABLE_FOR_THE_EXECUTION = "Console not available for the execution";
     public static final String DIRECTION_NOT_VALID = "direction not valid";
     public static final String INVALID_COMMAND_ENTERED = "Invalid Command Entered";
+    public static final String ILLEGAL_ARGUMENTS_EXCEPTION = "Illegal arguments exception";
     public static final int BOARD_ROW_COUNT = 4;
     public static final int BOARD_COLUMN_COUNT = 4;
     public static final String BOARD_OBJECT_IS_INVALID = "Board object is invalid";
