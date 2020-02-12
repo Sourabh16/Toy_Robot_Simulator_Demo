@@ -1,0 +1,5 @@
+main
+main.domain.common
+main.domain.exception
+main.domain.model
+main.infrastructure
