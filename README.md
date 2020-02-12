@@ -82,3 +82,15 @@ Expected output:
 Expected output
 
     3,3,NORTH
+
+------------------------------------------------------
+Instructions for execution:
+
+Precompiled Jar is included in Project as "ToyRobot.jar".
+
+To execute use command:
+
+Java -jar ToyRobot.jar
+
+
+
