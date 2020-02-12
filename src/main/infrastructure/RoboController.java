@@ -14,8 +14,14 @@ the controller class for the application
 public class RoboController {
 
     //    RobotBoard board = new RobotBoard(commonObjects.BOARD_ROW_COUNT, commonObjects.BOARD_COLUMN_COUNT);
-    RobotBoard board = new RobotBoard();
-    Robo robo = new Robo();
+    RobotBoard board;
+    Robo robo;
+
+    public RoboController() {
+        this.board = new RobotBoard();
+        this.robo = new Robo();
+    }
+
 
     public String performOperation(String inputString) {
         String[] inputArray = inputString.split(" "); //split total string into chunks by " "
@@ -91,7 +97,7 @@ public class RoboController {
                         robo.setPosition(position);
                         status = "Robo placed at " + position.getX() + "," + position.getY();
                     } else {
-                        status = "Robo placement at " + position.getX() + "," + position.getY() + " failed ";
+                        status = "Robo placement at " + position.getX() + "," + position.getY() + " failed";
                     }
                 } else {
                     status = INVALID_POSITION_ENTERED;
@@ -110,24 +116,32 @@ public class RoboController {
     /*
     check if provided position is greater than the row count and column count and less than 0 (which is invalid)
     */
-    public boolean isPositionCorrect(RoboPosition roboPosition, RobotBoard board) {
-        int x = roboPosition.getX();
-        int y = roboPosition.getY();
-        return x <= board.getRowCount() && y <= board.getColumnCount() && x >= 0 && y >= 0;
+    public boolean isPositionCorrect(RoboPosition roboPosition, RobotBoard board) throws robotException {
+        try {
+            int x = roboPosition.getX();
+            int y = roboPosition.getY();
+            return x <= board.getRowCount() && y <= board.getColumnCount() && x >= 0 && y >= 0;
+        } catch (Exception e) {
+            throw new robotException(e.getMessage());
+        }
     }
 
 
     /**
      * move robo to new position
      */
-    public boolean moveToNewPosition(RoboPosition newPosition, Robo robo) {
+    public boolean moveToNewPosition(RoboPosition newPosition, Robo robo) throws robotException {
         boolean response = false;
-        if (newPosition != null) {
-            // change position
-            robo.setPosition(newPosition);
-            response = true;
+        try {
+            if (newPosition != null) {
+                // change position
+                robo.setPosition(newPosition);
+                response = true;
+            }
+            return response;
+        } catch (Exception e) {
+            throw new robotException(e.getMessage());
         }
-        return response;
     }
 
 
@@ -136,27 +150,43 @@ public class RoboController {
      *
      * @param robo our robo on board
      */
-    public boolean turnLeft(Robo robo) {
+    public boolean turnLeft(Robo robo) throws robotException {
         boolean response = false;
-        if (robo.getPosition().getDirection() != null) {
-            robo.getPosition().direction = robo.getPosition().getDirection().turnToLeft();
-            response = true;
+        try {
+            if (robo.getPosition().getDirection() != null) {
+                robo.getPosition().direction = robo.getPosition().getDirection().turnToLeft();
+                response = true;
+            }
+            return response;
+        } catch (Exception e) {
+            throw new robotException(e.getMessage());
         }
-        return response;
     }
 
     /**
      * turns robo to left
+     *
      * @param robo our robo on board
      */
-    public boolean turnRight(Robo robo) {
+    public boolean turnRight(Robo robo) throws robotException {
         boolean response = false;
-        if (robo.getPosition().getDirection() != null) {
-            robo.getPosition().direction = robo.getPosition().getDirection().turnToRight();
-            response = true;
+        try {
+            if (robo.getPosition().getDirection() != null) {
+                robo.getPosition().direction = robo.getPosition().getDirection().turnToRight();
+                response = true;
+            }
+            return response;
+        } catch (Exception e) {
+            throw new robotException(e.getMessage());
         }
-        return response;
     }
 
+    public RobotBoard getBoard() {
+        return board;
+    }
+
+    public Robo getRobo() {
+        return robo;
+    }
 }
 
