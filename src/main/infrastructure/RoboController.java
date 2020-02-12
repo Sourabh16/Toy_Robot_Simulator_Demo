@@ -17,16 +17,9 @@ public class RoboController {
     RobotBoard board = new RobotBoard();
     Robo robo = new Robo();
 
-    public String performOperation(String inputString) throws robotException {
+    public String performOperation(String inputString) {
         String[] inputArray = inputString.split(" "); //split total string into chunks by " "
         String response = "";
-        boolean commandsValidity = false;
-//        //check split inputArray is valid commands
-//        for (String inputCommand : inputArray) {
-//            if (inputCommand.equalsIgnoreCase(commonObjects.MoveCommand.valueOf(inputCommand).toString()))
-//                commandsValidity = true;
-//        }
-//        if (commandsValidity) {
         try {
             MoveCommand command = MoveCommand.valueOf(inputArray[0]);
             int xVal = 0, yVal = 0;
@@ -84,9 +77,6 @@ public class RoboController {
         } catch (robotException e) {
             response = INVALID_COMMAND_ENTERED + ": " + e.getMessage();
         }
-//        }
-//        else
-//            return INVALID_COMMAND_ENTERED;
         return response;
     }
 
@@ -123,7 +113,6 @@ public class RoboController {
     public boolean isPositionCorrect(RoboPosition roboPosition, RobotBoard board) {
         int x = roboPosition.getX();
         int y = roboPosition.getY();
-//        return x <= this.rowCount && y <= this.columnCount && x >= 0 && y >= 0;
         return x <= board.getRowCount() && y <= board.getColumnCount() && x >= 0 && y >= 0;
     }
 

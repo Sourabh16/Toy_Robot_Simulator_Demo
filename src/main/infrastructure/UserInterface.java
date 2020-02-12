@@ -1,7 +1,6 @@
 package main.infrastructure;
 
 import main.domain.common.IOUtility;
-import main.domain.exception.robotException;
 
 import java.io.Console;
 
@@ -28,7 +27,7 @@ public class UserInterface {
                     try {
                         String outputVal = controller.performOperation(input);
                         System.out.println(outputVal);
-                    } catch (robotException e) {
+                    } catch (Exception e) {
                         System.err.println(e.getMessage());
                     }
                     break;

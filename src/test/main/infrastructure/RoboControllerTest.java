@@ -4,10 +4,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * test class for robo controller
+ */
 public class RoboControllerTest {
 
     @Test
-    public void performOperation() {
+    public void testPerformOperation() {
     }
 
     @Test
